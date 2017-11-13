@@ -3,7 +3,7 @@ $(() => {
 
   //make deck
   const deckOfCards = [];
-  const cardSuits = ["hearts", "diamonds", "clubs", "spades"];
+  const cardSuits = ["\u2665", "\u2666", "\u2663", "\u2660"];
   const cardValues = [
     {face: "A", num: 1},
     {face: "2", num: 2},
@@ -23,7 +23,7 @@ $(() => {
   const createDeck = () => {
     for (let i = 0; i < cardSuits.length; i++) {
       for (let a = 0; a < cardValues.length; a++) {
-        deckOfCards.push({face: cardValues[a].face, suit: cardSuits[i], value: cardValues[a].num});
+        deckOfCards.push({face: cardValues[a].face, suit: cardSuits[i], num: cardValues[a].num});
       }
     }
   }
@@ -44,6 +44,7 @@ $(() => {
   //set variables
   let bankroll = 100;
   let currentBet = 0;
+  let currentHand = 0;
 //------------------------------------------------------------------------------
   //create buttons
   //play
@@ -89,6 +90,22 @@ $(() => {
     $('#play-area').append($currentBankroll);
   }
 
+  //deal cards
+  const dealCard = () => {
+    for (let i = 0; i < 1; i++) {
+      // $.each(newDeck[i], function(j, k) {
+      //   let $card = $('<div>').addClass('card').text(j + ": " + k);
+      //   $('#play-area').append($card);
+      // });
+      let $card = $('<div>').addClass('card').text(newDeck[i].face + newDeck[i].suit);
+      $('#play-area').append($card);
+      currentHand += newDeck[i].num;
+      newDeck.splice(i, 1);
+      console.log(currentHand);
+    }
+  }
+
+  //event listeners/handlers
   $playBtn.on('click', startGame);
 
   $bet1.on('click', () => {
@@ -112,6 +129,7 @@ $(() => {
     $currentBankroll.text("Bankroll: " + bankroll);
   })
 
+  $dealBtn.on('click', dealCard);
 
 
 
