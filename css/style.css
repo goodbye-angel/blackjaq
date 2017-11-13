@@ -1,0 +1,21 @@
+body {
+  background: ivory;
+  color: ivory;
+  font-family: sans-serif;
+  font-size: 16px;
+}
+#play-area {
+  border: 3px solid green;
+  border-radius: 8px;
+  background: green;
+  margin: auto;
+  width: 800px;
+  height: 800px;
+}
+.button {
+  margin: 30px;
+}
+.bet-button {
+  margin: 20px;
+  border-radius: 30px;
+}
