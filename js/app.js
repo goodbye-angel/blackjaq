@@ -44,12 +44,25 @@ $(() => {
   //set variables
   let bankroll = 100;
   let currentBet = 0;
-  let currentHand = 0;
+  let currentHandDealer = 0;
+  let currentHandPlayer = 0;
 //------------------------------------------------------------------------------
+  //create divs
+  const $buttons = $('<div>').attr('id', 'buttons');
+  $('#play-area').append($buttons);
+
+  const $betCount = $('<div>').attr('id', 'bet-count').text("Current bet: " + currentBet);
+
+  const $currentBankroll = $('<div>').attr('id', 'bankroll').text("Bankroll: " + bankroll);
+
+  const $dealerHand = $('<div>').attr('id', 'dealer').html("Dealer's Hand<br>");
+
+  const $playerHand = $('<div>').attr('id', 'player').html("Player's Hand<br>");
+
   //create buttons
   //play
   const $playBtn = $('<button>').addClass('button').text('Play!');
-  $('#play-area').append($playBtn);
+  $buttons.append($playBtn);
 
   //deal
   const $dealBtn = $('<button>').addClass('button').text('Deal');
@@ -68,42 +81,44 @@ $(() => {
 
   //bet $10
   const $bet10 = $('<button>').addClass('bet-button').text('$10');
-
-  //create divs
-  const $betCount = $('<div>').attr('id', 'bet-count').text("Current bet: " + currentBet);
-
-  const $currentBankroll = $('<div>').attr('id', 'bankroll').text("Bankroll: " + bankroll);
-
 //------------------------------------------------------------------------------
   //play game
   const startGame = () => {
     createDeck();
     shuffleDeck();
     $playBtn.remove();
-    $('#play-area').append($dealBtn);
-    $('#play-area').append($hitBtn);
-    $('#play-area').append($standBtn);
-    $('#play-area').append($bet1);
-    $('#play-area').append($bet5);
-    $('#play-area').append($bet10);
+    $buttons.append($dealBtn);
+    $buttons.append($hitBtn);
+    $buttons.append($standBtn);
+    $buttons.append($bet1);
+    $buttons.append($bet5);
+    $buttons.append($bet10);
     $('#play-area').append($betCount);
     $('#play-area').append($currentBankroll);
+    $('#play-area').append($dealerHand);
+    $('#play-area').append($playerHand);
   }
 
   //deal cards
-  const dealCard = () => {
-    for (let i = 0; i < 1; i++) {
-      // $.each(newDeck[i], function(j, k) {
-      //   let $card = $('<div>').addClass('card').text(j + ": " + k);
-      //   $('#play-area').append($card);
-      // });
+  const dealCards = () => {
+    for (let i = 0; i < 2; i++) {
       let $card = $('<div>').addClass('card').text(newDeck[i].face + newDeck[i].suit);
-      $('#play-area').append($card);
-      currentHand += newDeck[i].num;
+      $('#dealer').append($card);
+      currentHandDealer += newDeck[i].num;
       newDeck.splice(i, 1);
-      console.log(currentHand);
+    }
+    for (let i = 0; i < 2; i++) {
+      let $card = $('<div>').addClass('card').text(newDeck[i].face + newDeck[i].suit);
+      $('#player').append($card);
+      currentHandPlayer += newDeck[i].num;
+      newDeck.splice(i, 1);
     }
   }
+
+  //hit
+  // const $hit () => {
+  //
+  // }
 
   //event listeners/handlers
   $playBtn.on('click', startGame);
@@ -129,7 +144,7 @@ $(() => {
     $currentBankroll.text("Bankroll: " + bankroll);
   })
 
-  $dealBtn.on('click', dealCard);
+  $dealBtn.on('click', dealCards);
 
 
 
