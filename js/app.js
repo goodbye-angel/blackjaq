@@ -88,9 +88,6 @@ $(() => {
     shuffleDeck();
     $playBtn.remove();
     $buttons.append($dealBtn);
-    $buttons.append($bet1);
-    $buttons.append($bet5);
-    $buttons.append($bet10);
     $('#play-area').append($betCount);
     $('#play-area').append($currentBankroll);
     $('#play-area').append($dealerHand);
@@ -114,21 +111,115 @@ $(() => {
     $dealBtn.remove();
     $buttons.append($hitBtn);
     $buttons.append($standBtn);
+    $buttons.append($bet1);
+    $buttons.append($bet5);
+    $buttons.append($bet10);
   }
 
   //hit
   const hit = () => {
     if (currentBet > 0) {
-    for (let i = 0; i < 1; i++) {
-      let $card = $('<div>').addClass('card').text(newDeck[i].face + newDeck[i].suit);
-      $('#player').append($card);
-      currentHandPlayer += newDeck[i].num;
-      newDeck.splice(i, 1);
-    }
+      for (let i = 0; i < 1; i++) {
+        let $card = $('<div>').addClass('card').text(newDeck[i].face + newDeck[i].suit);
+        $('#player').append($card);
+        currentHandPlayer += newDeck[i].num;
+        newDeck.splice(i, 1);
+          if (currentHandPlayer > 21) {
+            alert("Your hand is over 21. Bust!");
+            currentBet = 0;
+            $betCount.text("Current bet: " + currentBet);
+            newDeck.length = 0;
+            shuffleDeck();
+            $buttons.append($dealBtn);
+            $hitBtn.remove();
+            $standBtn.remove();
+            $bet1.remove();
+            $bet5.remove();
+            $bet10.remove();
+            //remove cards from screen
+          } else if (currentHandPlayer == 21) {
+            alert("Your hand equals 21. Blackjaq!");
+            bankroll += (currentBet * 3);
+            $currentBankroll.text("Bankroll: " + bankroll);
+            currentBet = 0;
+            $betCount.text("Current bet: " + currentBet);
+            newDeck.length = 0;
+            shuffleDeck();
+            $buttons.append($dealBtn);
+            $hitBtn.remove();
+            $standBtn.remove();
+            $bet1.remove();
+            $bet5.remove();
+            $bet10.remove();
+            //remove cards from screen
+          }
+      }
     } else {
-      alert("Please place a bet to continue");
+      alert("Please place a bet to continue.");
     }
+  }
+
+  //evaluate hand
+  const evaluate = () => {
+    if (currentHandDealer < currentHandPlayer) {
+      alert("You won this hand!");
+      bankroll += (currentBet * 2);
+      $currentBankroll.text("Bankroll: " + bankroll);
+      currentBet = 0;
+      $betCount.text("Current bet: " + currentBet);
+      newDeck.length = 0;
+      shuffleDeck();
+      $buttons.append($dealBtn);
+      $hitBtn.remove();
+      $standBtn.remove();
+      $bet1.remove();
+      $bet5.remove();
+      $bet10.remove();
+      //remove cards from screen
+  } else if (currentHandDealer > currentHandPlayer) {
+      alert("You lost this hand.");
+      currentBet = 0;
+      $betCount.text("Current bet: " + currentBet);
+      newDeck.length = 0;
+      shuffleDeck();
+      $buttons.append($dealBtn);
+      $hitBtn.remove();
+      $standBtn.remove();
+      $bet1.remove();
+      $bet5.remove();
+      $bet10.remove();
+      //remove cards from screen
+  } else {
+      alert("Tie!");
+      bankroll += currentBet;
+      $currentBankroll.text("Bankroll: " + bankroll);
+      currentBet = 0;
+      $betCount.text("Current bet: " + currentBet);
+      newDeck.length = 0;
+      shuffleDeck();
+      $buttons.append($dealBtn);
+      $hitBtn.remove();
+      $standBtn.remove();
+      $bet1.remove();
+      $bet5.remove();
+      $bet10.remove();
+      //remove cards from screen
     }
+  }
+
+
+  //stand
+  const stand = () => {
+    while (currentHandDealer < 17) {
+      for (let i = 0; i < 1; i++) {
+        let $card = $('<div>').addClass('card').text(newDeck[i].face + newDeck[i].suit);
+        $('#dealer').append($card);
+        currentHandDealer += newDeck[i].num;
+        newDeck.splice(i, 1);
+      }
+        evaluate();
+    }
+  }
 
   //event listeners/handlers
   $playBtn.on('click', startGame);
@@ -157,6 +248,8 @@ $(() => {
   $dealBtn.on('click', dealCards);
 
   $hitBtn.on('click', hit);
+
+  $standBtn.on('click', stand);
 
 
 
