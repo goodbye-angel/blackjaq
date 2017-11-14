@@ -88,23 +88,31 @@ $(() => {
     shuffleDeck();
     $playBtn.remove();
     $buttons.append($dealBtn);
+    $dealBtn.on('click', dealCards);
     $('#play-area').append($betCount);
     $('#play-area').append($currentBankroll);
     $('#play-area').append($dealerHand);
     $('#play-area').append($playerHand);
   }
+
   //next round
   const nextRound = () => {
     if (bankroll > 0) {
       currentBet = 0;
       $betCount.text("Current bet: " + currentBet);
       $buttons.append($dealBtn);
+      $dealBtn.on('click', dealCards);
       $hitBtn.remove();
       $standBtn.remove();
       $bet1.remove();
       $bet5.remove();
       $bet10.remove();
-      //remove cards from screen
+      let $cards = $('.card');
+      $cards.remove();
+      currentHandDealer = 0;
+      currentHandPlayer = 0;
+    } else if (bankroll >= 200) {
+      alert("You won!");
     } else {
       alert("You're out of money! Game over.");
     }
@@ -130,34 +138,41 @@ $(() => {
     $buttons.append($bet1);
     $buttons.append($bet5);
     $buttons.append($bet10);
+    $standBtn.on('click', stand);
+    $hitBtn.on('click', hit);
+    $bet1.on('click', bet1);
+    $bet5.on('click', bet5);
+    $bet10.on('click', bet10);
   }
 
   //hit
-  const hit = () => {
-    if (currentBet > 0) {
-      for (let i = 0; i < 1; i++) {
-        let $card = $('<div>').addClass('card').text(newDeck[i].face + newDeck[i].suit);
-        $('#player').append($card);
-        currentHandPlayer += newDeck[i].num;
-        newDeck.splice(i, 1);
-          if (currentHandPlayer > 21) {
-            alert("Your hand is over 21. Bust!");
-            nextRound();
-          } else if (currentHandPlayer == 21) {
-            alert("Your hand equals 21. Blackjaq!");
-            bankroll += (currentBet * 3);
-            $currentBankroll.text("Bankroll: " + bankroll);
-            nextRound();
-          }
-      }
-    } else {
-      alert("Please place a bet to continue.");
-    }
-  }
+   const hit = () => {
+     if (currentBet > 0) {
+       for (let i = 0; i < 1; i++) {
+         let $card = $('<div>').addClass('card').text(newDeck[i].face + newDeck[i].suit);
+         $('#player').append($card);
+         currentHandPlayer += newDeck[i].num;
+         newDeck.splice(i, 1);
+           if (currentHandPlayer > 21) {
+             alert("Your hand is over 21. Bust!");
+             nextRound();
+           } else if (currentHandPlayer == 21) {
+             alert("Your hand equals 21. Blackjaq!");
+             bankroll += (currentBet * 3);
+             $currentBankroll.text("Bankroll: " + bankroll);
+             nextRound();
+           }
+       }
+     } else {
+       alert("Please place a bet to continue.");
+     }
+ }
 
   //evaluate hand
   const evaluate = () => {
-    if (currentHandDealer < currentHandPlayer || currentHandDealer > 21) {
+    if (currentHandDealer < 17) {
+      stand();
+  } else if (currentHandDealer < currentHandPlayer || currentHandDealer > 21) {
       alert("You won this hand!");
       bankroll += (currentBet * 2);
       $currentBankroll.text("Bankroll: " + bankroll);
@@ -173,49 +188,50 @@ $(() => {
     }
   }
 
-
   //stand
   const stand = () => {
-    while (currentHandDealer < 17) {
+    if (currentBet === 0) {
+      alert("Please place a bet to continue.");
+  } else if (currentHandDealer < 17) {
       for (let i = 0; i < 1; i++) {
         let $card = $('<div>').addClass('card').text(newDeck[i].face + newDeck[i].suit);
         $('#dealer').append($card);
         currentHandDealer += newDeck[i].num;
         newDeck.splice(i, 1);
       }
-        evaluate();
+  } else {
+      evaluate();
     }
+  }
+
+  //bet $1
+  const bet1 = () => {
+    currentBet += 1;
+    bankroll -= 1;
+    $betCount.text("Current bet: " + currentBet);
+    $currentBankroll.text("Bankroll: " + bankroll);
+  }
+
+  //bet $5
+  const bet5 = () => {
+    currentBet += 5;
+    bankroll -=5;
+    $betCount.text("Current bet: " + currentBet);
+    $currentBankroll.text("Bankroll: " + bankroll);
+  }
+
+  //bet $10
+  const bet10 = () => {
+    currentBet += 10;
+    bankroll -= 10;
+    $betCount.text("Current bet: " + currentBet);
+    $currentBankroll.text("Bankroll: " + bankroll);
   }
 
   //event listeners/handlers
   $playBtn.on('click', startGame);
 
-  $bet1.on('click', () => {
-    currentBet += 1;
-    bankroll -= 1;
-    $betCount.text("Current bet: " + currentBet);
-    $currentBankroll.text("Bankroll: " + bankroll);
-  })
 
-  $bet5.on('click', () => {
-    currentBet += 5;
-    bankroll -=5;
-    $betCount.text("Current bet: " + currentBet);
-    $currentBankroll.text("Bankroll: " + bankroll);
-  })
-
-  $bet10.on('click', () => {
-    currentBet += 10;
-    bankroll -= 10;
-    $betCount.text("Current bet: " + currentBet);
-    $currentBankroll.text("Bankroll: " + bankroll);
-  })
-
-  $dealBtn.on('click', dealCards);
-
-  $hitBtn.on('click', hit);
-
-  $standBtn.on('click', stand);
 
 
 
