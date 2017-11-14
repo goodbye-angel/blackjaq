@@ -93,6 +93,22 @@ $(() => {
     $('#play-area').append($dealerHand);
     $('#play-area').append($playerHand);
   }
+  //next round
+  const nextRound = () => {
+    if (bankroll > 0) {
+      currentBet = 0;
+      $betCount.text("Current bet: " + currentBet);
+      $buttons.append($dealBtn);
+      $hitBtn.remove();
+      $standBtn.remove();
+      $bet1.remove();
+      $bet5.remove();
+      $bet10.remove();
+      //remove cards from screen
+    } else {
+      alert("You're out of money! Game over.");
+    }
+  }
 
   //deal cards
   const dealCards = () => {
@@ -126,32 +142,12 @@ $(() => {
         newDeck.splice(i, 1);
           if (currentHandPlayer > 21) {
             alert("Your hand is over 21. Bust!");
-            currentBet = 0;
-            $betCount.text("Current bet: " + currentBet);
-            newDeck.length = 0;
-            shuffleDeck();
-            $buttons.append($dealBtn);
-            $hitBtn.remove();
-            $standBtn.remove();
-            $bet1.remove();
-            $bet5.remove();
-            $bet10.remove();
-            //remove cards from screen
+            nextRound();
           } else if (currentHandPlayer == 21) {
             alert("Your hand equals 21. Blackjaq!");
             bankroll += (currentBet * 3);
             $currentBankroll.text("Bankroll: " + bankroll);
-            currentBet = 0;
-            $betCount.text("Current bet: " + currentBet);
-            newDeck.length = 0;
-            shuffleDeck();
-            $buttons.append($dealBtn);
-            $hitBtn.remove();
-            $standBtn.remove();
-            $bet1.remove();
-            $bet5.remove();
-            $bet10.remove();
-            //remove cards from screen
+            nextRound();
           }
       }
     } else {
@@ -161,49 +157,19 @@ $(() => {
 
   //evaluate hand
   const evaluate = () => {
-    if (currentHandDealer < currentHandPlayer) {
+    if (currentHandDealer < currentHandPlayer || currentHandDealer > 21) {
       alert("You won this hand!");
       bankroll += (currentBet * 2);
       $currentBankroll.text("Bankroll: " + bankroll);
-      currentBet = 0;
-      $betCount.text("Current bet: " + currentBet);
-      newDeck.length = 0;
-      shuffleDeck();
-      $buttons.append($dealBtn);
-      $hitBtn.remove();
-      $standBtn.remove();
-      $bet1.remove();
-      $bet5.remove();
-      $bet10.remove();
-      //remove cards from screen
+      nextRound();
   } else if (currentHandDealer > currentHandPlayer) {
       alert("You lost this hand.");
-      currentBet = 0;
-      $betCount.text("Current bet: " + currentBet);
-      newDeck.length = 0;
-      shuffleDeck();
-      $buttons.append($dealBtn);
-      $hitBtn.remove();
-      $standBtn.remove();
-      $bet1.remove();
-      $bet5.remove();
-      $bet10.remove();
-      //remove cards from screen
+      nextRound();
   } else {
       alert("Tie!");
       bankroll += currentBet;
       $currentBankroll.text("Bankroll: " + bankroll);
-      currentBet = 0;
-      $betCount.text("Current bet: " + currentBet);
-      newDeck.length = 0;
-      shuffleDeck();
-      $buttons.append($dealBtn);
-      $hitBtn.remove();
-      $standBtn.remove();
-      $bet1.remove();
-      $bet5.remove();
-      $bet10.remove();
-      //remove cards from screen
+      nextRound();
     }
   }
 
