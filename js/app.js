@@ -55,9 +55,9 @@ $(() => {
 
   const $currentBankroll = $('<div>').attr('id', 'bankroll').text("Bankroll: " + bankroll);
 
-  const $dealerHand = $('<div>').attr('id', 'dealer').html("Dealer's Hand<br>");
+  const $dealerHand = $('<div>').attr('id', 'dealer').text("Dealer's Hand");
 
-  const $playerHand = $('<div>').attr('id', 'player').html("Player's Hand<br>");
+  const $playerHand = $('<div>').attr('id', 'player').text("Player's Hand");
 
   //create buttons
   //play
@@ -88,8 +88,6 @@ $(() => {
     shuffleDeck();
     $playBtn.remove();
     $buttons.append($dealBtn);
-    $buttons.append($hitBtn);
-    $buttons.append($standBtn);
     $buttons.append($bet1);
     $buttons.append($bet5);
     $buttons.append($bet10);
@@ -113,12 +111,24 @@ $(() => {
       currentHandPlayer += newDeck[i].num;
       newDeck.splice(i, 1);
     }
+    $dealBtn.remove();
+    $buttons.append($hitBtn);
+    $buttons.append($standBtn);
   }
 
   //hit
-  // const $hit () => {
-  //
-  // }
+  const hit = () => {
+    if (currentBet > 0) {
+    for (let i = 0; i < 1; i++) {
+      let $card = $('<div>').addClass('card').text(newDeck[i].face + newDeck[i].suit);
+      $('#player').append($card);
+      currentHandPlayer += newDeck[i].num;
+      newDeck.splice(i, 1);
+    }
+    } else {
+      alert("Please place a bet to continue");
+    }
+    }
 
   //event listeners/handlers
   $playBtn.on('click', startGame);
@@ -145,6 +155,8 @@ $(() => {
   })
 
   $dealBtn.on('click', dealCards);
+
+  $hitBtn.on('click', hit);
 
 
 
