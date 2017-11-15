@@ -73,13 +73,13 @@ $(() => {
   const $standBtn = $('<button>').addClass('button').text('Stand');
 
   //bet $1
-  const $bet1 = $('<button>').addClass('bet-button').text('$1');
+  const $bet1 = $('<button>').addClass('bet-button').text('01');
 
   //bet $5
-  const $bet5 = $('<button>').addClass('bet-button').text('$5');
+  const $bet5 = $('<button>').addClass('bet-button').text('05');
 
   //bet $10
-  const $bet10 = $('<button>').addClass('bet-button').text('$10');
+  const $bet10 = $('<button>').addClass('bet-button').text('10');
 //------------------------------------------------------------------------------
   //play game
   const startGame = () => {
@@ -169,7 +169,7 @@ $(() => {
       newDeck.splice(i, 1);
     }
     $dealBtn.remove();
-    $buttons.append($hitBtn, $standBtn, $bet1, $bet5, $bet10);
+    $buttons.append($bet1, $bet5, $bet10, $hitBtn, $standBtn);
     $standBtn.on('click', stand);
     $hitBtn.on('click', hit);
     $bet1.on('click', bet1);
