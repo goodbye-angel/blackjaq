@@ -54,9 +54,9 @@ $(() => {
 
   const $currentBankroll = $('<div>').attr('id', 'bankroll').text("Bankroll: " + bankroll);
 
-  const $dealerHand = $('<div>').attr('id', 'dealer').text("Dealer's Hand");
+  const $dealerHand = $('<div>').attr('id', 'dealer').html("<h3>Dealer's Hand</h3>");
 
-  const $playerHand = $('<div>').attr('id', 'player').text("Player's Hand");
+  const $playerHand = $('<div>').attr('id', 'player').html("<h3>Player's Hand</h3>");
 
   //create buttons
   //play
@@ -73,13 +73,13 @@ $(() => {
   const $standBtn = $('<button>').addClass('button').text('Stand');
 
   //bet $1
-  const $bet1 = $('<button>').addClass('bet-button').text('01');
+  const $bet1 = $('<button>').addClass('bet-button').attr('id', 'bet1').text('01');
 
   //bet $5
-  const $bet5 = $('<button>').addClass('bet-button').text('05');
+  const $bet5 = $('<button>').addClass('bet-button').attr('id', 'bet5').text('05');
 
   //bet $10
-  const $bet10 = $('<button>').addClass('bet-button').text('10');
+  const $bet10 = $('<button>').addClass('bet-button').attr('id', 'bet10').text('10');
 //------------------------------------------------------------------------------
   //play game
   const startGame = () => {
@@ -88,6 +88,10 @@ $(() => {
     $playBtn.remove();
     $buttons.append($dealBtn);
     $dealBtn.on('click', dealCards);
+    bankroll = 100;
+    currentBet = 0;
+    $betCount.text("Bankroll: " + bankroll);
+    $betCount.text("Current bet: " + currentBet);
     $('#play-area').append($betCount, $currentBankroll, $dealerHand, $playerHand);
   }
 
@@ -96,10 +100,7 @@ $(() => {
     // reset values
     currentHandDealer = 0;
     currentHandPlayer = 0;
-    bankroll = 100;
-    currentBet = 0;
-    $betCount.text("Bankroll: " + bankroll);
-    $betCount.text("Current bet: " + currentBet);
+
     //remove buttons
     $hitBtn.remove();
     $standBtn.remove();
@@ -138,7 +139,7 @@ $(() => {
       $cardBacks.remove();
       currentHandDealer = 0;
       currentHandPlayer = 0;
-  } else if (bankroll >= 301) {
+  } else if (bankroll >= 300) {
       alert("You won!");
       resetGame();
   } else {
@@ -181,7 +182,6 @@ $(() => {
    const hit = () => {
      if (currentBet > 0) {
        for (let i = 0; i < 1; i++) {
-         $('.card-back').addClass('card');
          let $card = $('<div>').addClass('card').text(newDeck[i].face + newDeck[i].suit);
          $('#player').append($card);
          currentHandPlayer += newDeck[i].num;
@@ -275,8 +275,6 @@ $(() => {
 
   //event listeners/handlers
   $playBtn.on('click', startGame);
-
-
 
 
 
