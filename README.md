@@ -1,10 +1,10 @@
-#Blackjaq!
+# Blackjaq!
 
 Blackjaq is a browser-based game using modified rules for the casino game Blackjack, or 21. The goal of the game is to have the hand whose value comes closest to 21 without going over, or equals 21. The user is able to make bets, choose to "Hit" or "Stand" based on the cards showing on the screen, and accumulate money. If the user loses all their money, they lose the game. If they reach $300, they win!
 
 It's called Blackjaq because my name is Jaq, and I like puns.
 
-##Overview
+##  Overview
 
 The game uses a standard 52-card deck, which is shuffled at the beginning of the game and used throughout multiple rounds, until the player wins, loses, or refreshes the browser. If the deck has less than 15 cards remaining, it will be reshuffled.
 
@@ -21,24 +21,24 @@ At any point during the round:
 
 If the player reaches a win or lose condition, the game will reset and the user may play again.
 
-##Rules
+## Rules
 -The user must place an initial bet, and may continue to bet throughout the round.
 -Aces have a value of 1 at all times.
 -The user loses if they lose all their money.
 -The user wins if they reach $300.
 
-##Technologies Used
+## Technologies Used
 Blackjaq was built using HTML, CSS, JavaScript, and jQuery.
 
-##Future improvements
--Aces worth 1 or 11 depending on circumstances
--Red suit symbols for hearts and diamonds
--Image for the back of cards
--Functionality for split and double
--Modals to replace pop-ups
+## Future improvements
+- Aces worth 1 or 11 depending on circumstances
+- Red suit symbols for hearts and diamonds
+- Image for the back of cards
+- Functionality for split and double
+- Modals to replace pop-ups
 
-##About the styling
+### About the styling
 I grew up playing card games on Windows 95, and wanted to emulate the simple, blocky, colorful style of those games. Nostalgia!
 
-##Author
+### Author
 This game was built with lots of love by Jaq Dunham as a project for the Web Development Immersive Remote program at General Assembly in November, 2017.
