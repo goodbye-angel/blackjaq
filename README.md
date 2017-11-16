@@ -1,6 +1,6 @@
 # Blackjaq!
 
-Blackjaq is a browser-based game using modified rules for the casino game Blackjack, or 21. The goal of the game is to have the hand whose value comes closest to 21 without going over, or equals 21. The user is able to make bets, choose to "Hit" or "Stand" based on the cards showing on the screen, and accumulate money. If the user loses all their money, they lose the game. If they reach $300, they win!
+Blackjaq is a browser-based game using modified rules for the casino game Blackjack, or 21. The goal of the game is to have the hand whose value comes closest to 21 without going over. The user is able to make bets, choose to "Hit" or "Stand" based on the cards showing on the screen, and accumulate money. If the user loses all their money, they lose the game. If they reach $300, they win!
 
 It's called Blackjaq because my name is Jaq, and I like puns.
 
