@@ -256,9 +256,41 @@ $(() => {
 
   //event listeners/handlers
   $playBtn.on('click', startGame);
+//------------------------------------------------------------------------------
+  //modal
+  const $modalInfo = $('#modal-info');
 
+  const $modalRules = $('#modal-rules');
 
+  let $openInfo = $('#open-info');
 
+  let $openRules = $('#open-rules');
+
+  let $closeInfo = $('#close-info');
+
+  let $closeRules = $('#close-rules');
+
+  const openInfo = () => {
+    $modalInfo.css('display', 'block');
+  }
+
+  const openRules = () => {
+    $modalRules.css('display', 'block');
+  }
+
+  const closeInfo = () => {
+    $modalInfo.css('display', 'none');
+  }
+
+  const closeRules = () => {
+    $modalRules.css('display', 'none');
+  }
+
+  $openInfo.on('click', openInfo);
+  $closeInfo.on('click', closeInfo);
+
+  $openRules.on('click', openRules);
+  $closeRules.on('click', closeRules);
 
 
 

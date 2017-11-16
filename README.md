@@ -15,23 +15,22 @@ The Player must place an initial bet, and then has the choice to "Hit" (take ano
 At this point the Player's and Dealer's hands will be evaluated, and whichever has the highest total without going over 21 wins the round. If this is the Player, they will win twice the money they bet during the round.
 
 At any point during the round:
--If the value of the cards in the Player's hand exceed 21, they "bust", and lose the money they bet during the round.
--If the Dealer's hand exceeds 21, they bust, and the Player wins twice the money they bet during the round.
--If the Player's hand totals exactly 21, they get a Blackjack, and win three times the money they bet during the round.
-
-If the player reaches a win or lose condition, the game will reset and the user may play again.
+- If the value of the cards in the Player's hand exceed 21, they "bust", and lose the money they bet during the round.
+- If the Dealer's hand exceeds 21, they bust, and the Player wins twice the money they bet during the round.
+- If the Player's hand totals exactly 21, they get a Blackjack, and win three times the money they bet during the round.
+- If the player reaches a win or lose condition, the game will reset and the user may play again.
 
 ## Rules
--The user must place an initial bet, and may continue to bet throughout the round.
--Aces have a value of 1 at all times.
--The user loses if they lose all their money.
--The user wins if they reach $300.
+- The user must place an initial bet, and may continue to bet throughout the round.
+- Aces have a value of 1 at all times.
+- The user loses if they lose all their money.
+- The user wins if they reach $300.
 
 ## Technologies Used
 Blackjaq was built using HTML, CSS, JavaScript, and jQuery.
 
-## Future improvements
-- Aces worth 1 or 11 depending on circumstances
+## Future Improvements
+- Aces are worth 1 or 11 depending on circumstances
 - Red suit symbols for hearts and diamonds
 - Image for the back of cards
 - Functionality for split and double

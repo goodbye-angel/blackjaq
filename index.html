@@ -12,8 +12,29 @@
   </head>
   <body>
     <nav>
-      <a href="#">info</a> BLACKJAQ! <a href="#">rules</a>
+      <a href="#info" id="open-info">info</a> BLACKJAQ! <a href="#rules" id="open-rules">rules</a>
     </nav>
     <div id="play-area"></div>
   </body>
+  <div id="modal-info" class="modal">
+    <div class="modal-content">
+      <a href="#" id="close-info">close</a>
+      <h3>Info</h3>
+      <p>Blackjaq is a browser-based game using modified rules for the casino game Blackjack, or 21. The goal of the game is to have the hand whose value comes closest to 21 without going over, or equals 21.</p>
+      <p>It was made with HTML, CSS, JavaScript, jQuery, and &#9829;.</p>
+      <p>It's called Blackjaq because my name is Jaq, and I like puns.</p>
+    </div>
+  </div>
+  <div id="modal-rules" class="modal">
+    <div class="modal-content">
+      <a href="#" id="close-rules">close</a>
+      <h3>Rules</h3>
+        <ul>
+          <li>The user must place an initial bet, and may continue to bet throughout the round.</li>
+          <li>Aces have a value of 1 at all times.</li>
+          <li>The user loses if they lose all their money.</li>
+          <li>The user wins if they reach $300.</li>
+        </ul>
+      </div>
+    </div>
 </html>
