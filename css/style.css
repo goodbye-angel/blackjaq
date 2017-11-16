@@ -21,8 +21,8 @@ a {
   border-radius: 8px;
   margin: auto;
   padding: 20px;
-  width: 700px;
-  height: 800px;
+  width: 900px;
+  height: 700px;
   display: flex;
   flex-direction: column;
 }
@@ -32,7 +32,7 @@ a {
   font-family: monospace;
   border: 10px solid black;
   border-radius: 5px;
-  margin: 30px;
+  margin: 20px;
 }
 .bet-button {
   font-size: 20px;
@@ -69,7 +69,7 @@ a {
   color: black;
   width: 100px;
   height: 125px;
-  font-size: 60px;
+  font-size: 55px;
   text-align: center;
   margin: 10px;
   border: 4px solid black;

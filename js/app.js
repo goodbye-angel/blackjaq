@@ -88,41 +88,22 @@ $(() => {
     $playBtn.remove();
     $buttons.append($dealBtn);
     $dealBtn.on('click', dealCards);
-    bankroll = 100;
-    currentBet = 0;
-    $betCount.text("Bankroll: " + bankroll);
-    $betCount.text("Current bet: " + currentBet);
     $('#play-area').append($betCount, $currentBankroll, $dealerHand, $playerHand);
   }
 
   //reset game
   const resetGame = () => {
-    // reset values
-    currentHandDealer = 0;
-    currentHandPlayer = 0;
-
-    //remove buttons
-    $hitBtn.remove();
-    $standBtn.remove();
-    $bet1.remove();
-    $bet5.remove();
-    $bet10.remove();
-    // remove cards
-    let $cards = $('.card');
-    $cards.remove();
-    let $cardBacks = $('.card-back');
-    $cardBacks.remove();
-    //remove other items
-    $betCount.remove();
-    $currentBankroll.remove();
-    $dealerHand.remove();
-    $playerHand.remove();
-    //restart game
-    startGame();
+    location.reload();
   }
 
   //next round
   const nextRound = () => {
+    if (newDeck.length < 15) {
+      deckOfCards.length = 0;
+      newDeck.length = 0;
+      createDeck();
+      shuffleDeck();
+    }
     if (bankroll > 0 && bankroll < 300) {
       currentBet = 0;
       $betCount.text("Current bet: " + currentBet);
