@@ -36,6 +36,9 @@ Blackjaq was built using HTML, CSS, JavaScript, and jQuery.
 - Functionality for split and double
 - Modals to replace pop-ups
 
+## Play!
+Blackjaq is hosted online at https://goodbye-angel.github.io/blackjaq/
+
 ### About the styling
 I grew up playing card games on Windows 95, and wanted to emulate the simple, blocky, colorful style of those games. Nostalgia!
 
