@@ -35,8 +35,10 @@ Blackjaq was built using HTML, CSS, JavaScript, and jQuery.
 - Image for the back of cards
 - Functionality for split and double
 - Modals to replace pop-ups
+- Current value of hand displayed
+- "All in" button to bet all of current bankroll
 
-## Play!
+### Play!
 Blackjaq is hosted online at https://goodbye-angel.github.io/blackjaq/
 
 ### About the styling
